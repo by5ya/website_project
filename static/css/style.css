@@ -1,0 +1,86 @@
+
+body {
+    background-color: #f8f9fa; 
+    
+}
+
+.navbar {
+    background-color: #ff8c00; 
+    height: 90px;
+}
+
+.container .navbar-brand {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.container .navbar-brand:hover {
+    color: #473124;
+
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.3rem;
+    margin-left: 18px;
+    color: #ffffff; 
+}
+
+.jumbotron {
+    background-color: #fff3cd;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0.3rem;
+}
+
+a {
+    text-decoration: none; 
+}
+
+a:hover {
+    color: #ffffff; 
+}
+
+.navbar-nav .nav-link i {
+    margin-right: 7px; 
+}
+
+.auth-reg-container {
+    background-color: #ff8c00;
+    border-radius: 8px;
+    display: flex;            /* Включаем Flexbox */
+    flex-direction: column;   /* Располагаем элементы в колонку */
+    align-items: center;       /* Центрируем элементы по горизонтали (необязательно) */
+    /* Дополнительные стили по желанию */
+    width: 600px; /* задаем ширину контейнера чтобы он не растягивался на весь экран */
+    margin: 0 auto; /* Центрируем контейнер по горизонтали */
+}
+
+.form-control {
+    padding: auto;
+    display: flex;
+    margin-top: 15px; 
+
+    justify-content: center;/* Делаем небольшие отступы между полями */
+    width: 100%; /* Растягиваем поля на всю ширину контейнера */
+}
+
+.registry_form{
+    width: 70%;
+}
+
+.registry_form button {
+    width: 90%;
+    margin: 10px auto;
+    text-align: center;
+    padding-left: 30%;
+    display: flex;
+    align-items: center;
+}
+
+h1{
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    color: #473124;
+}
