@@ -1,9 +1,13 @@
 
-body {
-    background-color: #f8f9fa; 
-    
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Ensure the body and html take up the full viewport height */
+    overflow-x: hidden; /* Prevent horizontal scrolling caused by the slider */
 }
-
+.container_main{
+    margin: 20px 30px;
+}
 .navbar {
     background-color: #ff8c00; 
     height: 90px;
@@ -83,4 +87,118 @@ h1{
     display: flex;
     justify-content: center;
     color: #473124;
+}
+
+/* Общий контейнер для слайдера и текста */
+.slider-wrapper {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 150px;
+    margin-left: 50px;
+    max-width: 1200px;
+    gap: 20px; /* Добавляем отступ между слайдером и текстом */
+}
+
+/* Стили для контейнера слайдера */
+.slider-container {
+    position: relative;
+    width: 800px; /* или 100% */
+    height: 400px;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    width: 800px;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    flex: 0 0 100%; /* Каждый слайд занимает 100% ширины контейнера */
+    height: 100%;
+    width: 800px;
+    position: relative;
+}
+
+.slide img {
+    width: 800px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    width: 80%;
+}
+
+.text-container {
+    flex: 1;
+    padding: 20px;
+}
+
+.text-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s;
+    position: absolute;
+}
+
+.text-content.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+}
+
+.text-content h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.text-content p {
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+
+.slide-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.slide-content p {
+    font-size: 0.9em;
+}
+
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.slider-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
 }

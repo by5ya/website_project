@@ -1,12 +1,49 @@
 {% extends "navigation.html" %}
 
 {% block content %}
-    <div class="container">
-        <div class="jumbotron">
-            <h1 class="display-4">Добро пожаловать в LostCatsBlog!</h1>
-            <p class="lead">Это блог о волонтере, который спас сотни кошчаьих лапок</p>
-            <hr class="my-4">
-            <p>Станьте счасливым обладателем пушистого друга!</p>
+<div class="slider-wrapper">
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <img src="static/img/img1.jpeg" alt="Изображение 1">
+                <div class="slide-content">
+                    <h2>Заголовок 1</h2>
+                    <p>Описание 1. Здесь может быть любой текст.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="static/img/img2.jpeg" alt="Изображение 2">
+                <div class="slide-content">
+                    <h2>Заголовок 2</h2>
+                    <p>Описание 2. Здесь может быть любой текст.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="static/img/img3.jpeg" alt="Изображение 3">
+                <div class="slide-content">
+                    <h2>Заголовок 3</h2>
+                    <p>Описание 3. Здесь может быть любой текст.</p>
+                </div>
+            </div>
+        </div>
+        <button class="slider-button prev">&#10094;</button>
+        <button class="slider-button next">&#10095;</button>
+    </div>
+
+    <div class="text-container">
+        <div class="text-content active">
+            <h2>Заголовок Текста 1</h2>
+            <p>Текст описания 1, соответствующий первому слайду. Более подробное описание.</p>
+        </div>
+        <div class="text-content">
+            <h2>Заголовок Текста 2</h2>
+            <p>Текст описания 2, соответствующий второму слайду. Более подробное описание.</p>
+        </div>
+        <div class="text-content">
+            <h2>Заголовок Текста 3</h2>
+            <p>Текст описания 3, соответствующий третьему слайду. Более подробное описание.</p>
         </div>
     </div>
+</div>
+    <script src="static/js/script.js"></script>
 {% endblock %}
