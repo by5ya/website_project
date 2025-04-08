@@ -1,19 +1,23 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="static/css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Авторизация</title>
-</head>
-<body>
-    <h1>Авторизация</h1>
-    <div class="auth-reg-container">
-        <form class="registry_form" method="post">
-            <input type="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Введите имя пользователя" name="username">
-            <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Введите пароль" name="password">
-            <button type="submit">Войти</button>
+{% extends "navigation.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h2 class="auth-header">Вход в аккаунт</h2>
+        <form method="post" class="auth-form">
+            <div class="auth-input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" class="auth-input" name="username" placeholder="Имя пользователя" required>
+            </div>
+            <div class="auth-input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" class="auth-input" name="password" placeholder="Пароль" required>
+            </div>
+            <button type="submit" class="auth-button">Войти</button>
+            <div class="auth-footer">
+                <a href="/registry">Нет аккаунта? Зарегистрируйтесь</a>
+            </div>
         </form>
-    </div> 
-</body>
-</html>
+    </div>
+</div>
+{% endblock %}
