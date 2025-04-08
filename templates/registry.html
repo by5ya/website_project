@@ -1,21 +1,31 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="static/css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
-</head>
-<body>
-    <h1>Регистрация</h1>
-    <div class="auth-reg-container">
-        <form class="registry_form" method="post">
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Введите адрес почты" name="email">
-            <input type="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Введите имя пользователя" name="username">
-            <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Введите пароль" name="password">
-            <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Подтвердите пароль" name="password">
-            <button type="submit">Зарегестрироваться</button>
+{% extends "navigation.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h2 class="auth-header">Регистрация</h2>
+        <form method="post" class="auth-form">
+            <div class="auth-input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" class="auth-input" name="email" placeholder="Email" required>
+            </div>
+            <div class="auth-input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" class="auth-input" name="username" placeholder="Имя пользователя" required>
+            </div>
+            <div class="auth-input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" class="auth-input" name="password" placeholder="Пароль" required>
+            </div>
+            <div class="auth-input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" class="auth-input" name="confirm_password" placeholder="Повторите пароль" required>
+            </div>
+            <button type="submit" class="auth-button">Зарегистрироваться</button>
+            <div class="auth-footer">
+                <a href="/login">Уже есть аккаунт? Войдите</a>
+            </div>
         </form>
-    </div> 
-</body>
-</html>
+    </div>
+</div>
+{% endblock %}
