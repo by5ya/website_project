@@ -1,33 +1,36 @@
 from flask import Flask, render_template
-
 from flask_sqlalchemy import SQLAlchemy
-
-
-db = SQLAlchemy()
 
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cats.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///LostCatsBlog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app)
 
+
+db = SQLAlchemy()
+db.init_app(app)
 
 class Cat(db.Model):  # Replace Cat with your actual model
         id = db.Column(db.Integer, primary_key=True)
         name = db.Column(db.String(80), nullable=False)
+        age = db.Column(db.Integer)
+        description = db.Column(db.String(80), nullable=False)
+        image_url = db.Column(db.String(80), nullable=False)
 
         def __repr__(self):
             return f"<Cat {self.name}>"
-
 
     # Create the database tables *only once* when the app starts.  Important!
 with app.app_context():
     db.create_all()
     # Add some data (only needed once)
     if not Cat.query.first():  # Check if any cats exist first
-        new_cat = Cat(name="Whiskers")
+        new_cat = Cat(name="Whiskers", age=2, description="Милый котик", image_url="static/img/img1.jpeg")
+        new_cat1 = Cat(name="Bobby", age=2, description="Милый котик еще один", image_url="static/img/img2.jpeg")
         db.session.add(new_cat)
+        db.session.commit()
+        db.session.add(new_cat1)
         db.session.commit()
 
 
