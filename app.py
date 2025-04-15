@@ -1,52 +1,19 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
-from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
+import os
+from flask import Flask, render_template, request, redirect, url_for, flash, session, current_app
+from models import db, Cat, User, News
+
+from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///LostCatsBlog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['UPLOAD_FOLDER'] = 'static/img'
 
 
-db = SQLAlchemy()
 db.init_app(app)
-
-# Модель пользователя
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128), nullable=False)
-
-    def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
-
-    def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
-
-
-class Cat(db.Model):  # Replace Cat with your actual model
-        id = db.Column(db.Integer, primary_key=True)
-        name = db.Column(db.String(80), nullable=False)
-        age = db.Column(db.Integer)
-        description = db.Column(db.String(80), nullable=False)
-        image_url = db.Column(db.String(80), nullable=False)
-
-        def __repr__(self):
-            return f"<Cat {self.name}>"
-
-    # Create the database tables *only once* when the app starts.  Important!
-with app.app_context():
-    db.create_all()
-    # Add some data (only needed once)
-    if not Cat.query.first():  # Check if any cats exist first
-        new_cat = Cat(name="Whiskers", age=2, description="Милый котик", image_url="static/img/img1.jpeg")
-        new_cat1 = Cat(name="Bobby", age=2, description="Милый котик еще один", image_url="static/img/img2.jpeg")
-        db.session.add(new_cat)
-        db.session.commit()
-        db.session.add(new_cat1)
-        db.session.commit()
 
 
 @app.route('/catalog')
@@ -60,7 +27,8 @@ def get_cat():
 
 @app.route('/')
 def home_page():
-    return render_template('home_page.html')
+    news = News.query.all()
+    return render_template('home_page.html', news=news)
 
 
 @app.route('/info')
@@ -127,6 +95,88 @@ def logout():
     session.pop('username', None)
     flash('Вы вышли из аккаунта')
     return redirect(url_for('home_page'))
+
+@app.route('/add_cat', methods=['GET', 'POST'])
+def add_cat():
+    if request.method == 'POST':
+        name = request.form['name']
+        age = request.form['age']
+        description = request.form['description']
+        image = request.files['image_file']
+        if image:
+                filename = secure_filename(image.filename)  # Sanitize filename
+                filepath = os.path.join(current_app.root_path, current_app.config['UPLOAD_FOLDER'] + "/cats", filename)
+                image.save(filepath)
+                img_url = url_for('static', filename='img/cats/' + filename)
+                cat = Cat(name=name, age=age, description=description, image_url=img_url)
+                db.session.add(cat)
+                db.session.commit()
+                return redirect(url_for('add_cat'))
+    return render_template('add_cat.html')
+
+@app.route('/delete_cat/<int:cat_id>', methods=['POST'])  # Use POST for deletion
+def delete_cat(cat_id):
+
+    cat = Cat.query.get_or_404(cat_id)  # Get cat or return 404 if not found
+
+    db.session.delete(cat)
+    db.session.commit()
+
+    return redirect(url_for('admin_page'))
+
+@app.route('/delete_cat_page')  # Use POST for deletion
+def delete_cat_page():
+    cats = Cat.query.all()
+    return render_template('delete_cat_page.html', cats=cats)
+
+
+@app.route('/delete_news/<int:new_id>', methods=['POST'])  # Use POST for deletion
+def delete_new(new_id):
+
+    new = News.query.get_or_404(new_id)  # Get cat or return 404 if not found
+
+    db.session.delete(new)
+    db.session.commit()
+
+    return redirect(url_for('admin_page'))
+
+@app.route('/delete_news_page')  # Use POST for deletion
+def delete_news_page():
+    news = News.query.all()
+    return render_template('delete_news_page.html', news=news)
+    
+@app.route('/admin_page') 
+def admin_page():
+    return render_template('admin_page.html')
+
+
+@app.route('/add_news', methods=['GET', 'POST'])
+def add_news():
+    if request.method == 'POST':
+        title = request.form['title']
+        date = datetime.strptime(request.form['date'], '%Y-%m-%d').date()
+        content = request.form['content']
+        image = request.files['image_file']
+        if image:
+                filename = secure_filename(image.filename)  # Sanitize filename
+                filepath = os.path.join(current_app.root_path, current_app.config['UPLOAD_FOLDER'] + "/news", filename)
+                image.save(filepath)
+                img_url = url_for('static', filename='img/news/' + filename)
+                news = News(title=title, date=date, content=content, image_url=img_url)
+                db.session.add(news)
+                db.session.commit()
+                return redirect(url_for('add_news'))
+    return render_template('add_news.html')
+
+@app.route('/admin_pass', methods=['GET', 'POST'])
+def admin_pass():
+    if request.method == 'POST':
+        password = request.form['password_admin']
+        if password == 'admin':
+            return render_template('admin_page.html')
+    return render_template('admin_pass.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

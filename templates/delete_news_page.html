@@ -1,0 +1,14 @@
+{% extends "navigation.html" %}
+
+{% block content %}
+<ul>
+    {% for new in news %}
+        <li>
+            {{ new.title }} ({{ new.content }}, {{ new.date }})
+            <form method="post" action="{{ url_for('delete_new', new_id=new.id) }}">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "navigation.html" %}
+
+{% block content %}
+<div class="container-cn">
+    <h2 class="text-center mb-4">Добавить Новость</h2>
+
+    <form id="newsForm" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="title">Заголовок новости: </label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Введите заголовок" required>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Дата:</label>
+        <input type="date" class="form-control" id="date" name="date" required>
+      </div>
+
+      <div class="form-group">
+        <label for="content">Описание:</label>
+        <textarea class="form-control" id="content" name="content" rows="3" placeholder="Расскажите о новости" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="image">Фото:</label>
+        <div class="custom-file">
+          <input type="file" id="image_file" name="image_file" accept="image/*" required>
+          <label class="custom-file-label" for="image">Выберите файл</label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Добавить новость</button>
+    </form>
+
+    <div id="message" class="mt-3 text-center"></div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+{% endblock %}

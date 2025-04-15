@@ -45,5 +45,22 @@
         </div>
     </div>
 </div>
+<div class="news">
+    <div class="row">
+        {% for new in news %}
+        <div class="col-md-4">
+            <div class="card cat-card">
+                <img src="{{ new.image_url }}" class="card-img-top" alt="{{ new.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ new.title }}</h5>
+                    <p class="card-text">Дата: {{ new.date }} лет</p>
+                    <p class="card-text">{{ new.content }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
     <script src="static/js/script.js"></script>
 {% endblock %}

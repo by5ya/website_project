@@ -1,0 +1,16 @@
+{% extends "navigation.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h2 class="auth-header">Вход в аккаунт</h2>
+        <form method="post" class="auth-form">
+            <div class="auth-input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" class="auth-input" name="password_admin" placeholder="Пароль админа" required>
+            </div>
+            <button type="submit" class="auth-button">Войти</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

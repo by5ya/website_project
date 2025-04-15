@@ -1,0 +1,14 @@
+{% extends "navigation.html" %}
+
+{% block content %}
+<ul>
+    {% for cat in cats %}
+        <li>
+            {{ cat.name }} ({{ cat.description }}, {{ cat.age }})
+            <form method="post" action="{{ url_for('delete_cat', cat_id=cat.id) }}">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -202,3 +202,70 @@ h1{
 .next {
     right: 10px;
 }
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+}
+.tab {
+    padding: 10px 20px;
+    background-color: #ddd;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    margin-right: 5px;
+}
+.tab.active {
+    background-color: #4CAF50;
+    color: white;
+}
+.tab-content {
+    display: none;
+    padding: 20px;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.tab-content.active {
+    display: block;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+.add-btn {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.add-btn:hover {
+    background-color: #45a049;
+}
+.container-cn {
+    margin-top: 50px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+.form-group {
+    margin-bottom: 20px;
+}
+
+.news {
+    margin-top: 70px;
+}
