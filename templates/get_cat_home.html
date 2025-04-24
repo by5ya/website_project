@@ -1,0 +1,19 @@
+{% extends "navigation.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="cat-info">
+                <h1 class="cat-name">{{ cat.name }}</h1>
+                <img src="{{ cat.image_url }}" alt="Кот" class="address-image">
+                <p class="cat-details mb-2">Возраст: {{ cat.age }} лет</p>
+                <p class="cat-details mb-2">Место обнаружения:</p>
+                <img src="{{ cat.address_img_url }}" alt="Место, где нашли кота" class="address-image">
+                <p class="cat-description">{{ cat.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

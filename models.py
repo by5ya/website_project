@@ -11,6 +11,8 @@ class Cat(db.Model):  # Replace Cat with your actual model
         age = db.Column(db.Integer)
         description = db.Column(db.String(80), nullable=False)
         image_url = db.Column(db.String(80), nullable=False)
+        address = db.Column(db.String(80), nullable=False)
+        address_img_url = db.Column(db.String(80), nullable=False)
 
         def __repr__(self):
             return f"<Cat {self.name}>"

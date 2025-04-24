@@ -2,38 +2,23 @@
 
 {% block content %}
 <div class="container">
-
-    <h1 class="text-center">Коты на усыновление</h1>
-
+    <h1 class="text-center">Коты</h1>
     <div class="row">
-
         {% for cat in cats %}
-
         <div class="col-md-4">
-
             <div class="card cat-card">
-
                 <img src="{{ cat.image_url }}" class="card-img-top" alt="{{ cat.name }}">
-
                 <div class="card-body">
-
                     <h5 class="card-title">{{ cat.name }}</h5>
-
                     <p class="card-text">Возраст: {{ cat.age }} лет</p>
-
                     <p class="card-text">{{ cat.description }}</p>
-
-                    <a href="#" class="btn btn-primary">Забрать домой</a>
-
+                    <form method="get" action="{{ url_for('get_cat_home', cat_id=cat.id) }}">
+                        <button type="submit">Подробнее</button>
+                    </form>
                 </div>
-
             </div>
-
         </div>
-
         {% endfor %}
-
     </div>
-
 </div>
 {% endblock %}

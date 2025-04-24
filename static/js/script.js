@@ -54,12 +54,14 @@ function initSlider() {
       var name = $('#name').val();
       var age = $('#age').val();
       var description = $('#description').val();
+      var address = $('#address').val();
       var imageFile = $('#image')[0].files[0];
   
       var formData = new FormData();
       formData.append('name', name);
       formData.append('age', age);
       formData.append('description', description);
+      formData.append('address', address);
       formData.append('image', imageFile);
   
       $.ajax({
