@@ -12,6 +12,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///LostCatsBlog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'static/img'
+app.config["SECRET_KEY"]="SECRET"
 static_map_server = 'https://static-maps.yandex.ru/v1?'
 geocoder_server = 'http://geocode-maps.yandex.ru/1.x/?'
 apikey_geocode = "8013b162-6b42-4997-9691-77b7074026e0"
